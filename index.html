@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <style>
+        body { 
+            margin: 0; 
+            height: 100vh; 
+            background: #000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        #countdown { 
+            font-size: 8vw; 
+            font-weight: bold; 
+            color: #fff; 
+            font-family: 'Arial', sans-serif; 
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">168:00:00</div>
+
+    <script>
+        // 168小时 = 7天，计算目标时间（当前时间+168小时）
+        const targetDate = new Date(Date.now() + 168 * 60 * 60 * 1000);
+
+        function updateCountdown() {
+            const now = new Date();
+            let diff = targetDate - now;
+            diff = diff > 0 ? diff : 0;
+
+            const hours = Math.floor(diff / (1000 * 60 * 60)).toString().padStart(3, '0');
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+            document.getElementById('countdown').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
