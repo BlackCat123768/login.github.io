@@ -26,12 +26,18 @@
     <div id="countdown">168:00:00</div>
 
     <script>
-        // 168小时 = 7天，计算目标时间（当前时间+168小时）
-        const targetDate = new Date(Date.now() + 168 * 60 * 60 * 1000);
+        // 从本地存储获取目标时间，无则初始化168小时后时间
+        let targetTime = localStorage.getItem('countdownTarget');
+        if (!targetTime) {
+            targetTime = Date.now() + 168 * 60 * 60 * 1000;
+            localStorage.setItem('countdownTarget', targetTime);
+        } else {
+            targetTime = Number(targetTime);
+        }
 
         function updateCountdown() {
-            const now = new Date();
-            let diff = targetDate - now;
+            const now = Date.now();
+            let diff = targetTime - now;
             diff = diff > 0 ? diff : 0;
 
             const hours = Math.floor(diff / (1000 * 60 * 60)).toString().padStart(3, '0');
