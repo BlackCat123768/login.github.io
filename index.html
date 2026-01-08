@@ -2,53 +2,62 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown</title>
+    <title>LOGIN</title>
     <style>
-        body { 
-            margin: 0; 
-            height: 100vh; 
-            background: #000; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+        .login-box {
+            width: 300px;
+            margin: 100px auto;
+            text-align: center;
         }
-        #countdown { 
-            font-size: 8vw; 
-            font-weight: bold; 
-            color: #fff; 
-            font-family: 'Arial', sans-serif; 
-            letter-spacing: 2px;
+        input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 8px 20px;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div id="countdown">168:00:00</div>
+    <div class="login-box">
+        <h2>请登录</h2>
+        <input type="text" id="username" placeholder="账号">
+        <input type="password" id="password" placeholder="密码">
+        <button onclick="checkLogin()">登录</button>
+        <p class="error" id="errorTip">用户名或密码不正确</p>
+    </div>
 
     <script>
-        // 从本地存储获取目标时间，无则初始化168小时后时间
-        let targetTime = localStorage.getItem('countdownTarget');
-        if (!targetTime) {
-            targetTime = Date.now() + 168 * 60 * 60 * 1000;
-            localStorage.setItem('countdownTarget', targetTime);
-        } else {
-            targetTime = Number(targetTime);
+        // 预设的账号密码（可自行修改）
+        const DEFAULT_USER = "Dr_Beyonce";
+        const DEFAULT_PWD = "15935724860";
+
+        function checkLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorTip = document.getElementById("errorTip");
+
+            // 验证逻辑
+            if (username === DEFAULT_USER && password === DEFAULT_PWD) {
+                // 登录成功，跳转到 home.html
+                window.location.href = "home.html";
+            } else {
+                // 登录失败，显示提示
+                errorTip.style.display = "block";
+                // 3 秒后隐藏提示
+                setTimeout(() => {
+                    errorTip.style.display = "none";
+                }, 3000);
+            }
         }
-
-        function updateCountdown() {
-            const now = Date.now();
-            let diff = targetTime - now;
-            diff = diff > 0 ? diff : 0;
-
-            const hours = Math.floor(diff / (1000 * 60 * 60)).toString().padStart(3, '0');
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
-
-            document.getElementById('countdown').textContent = `${hours}:${minutes}:${seconds}`;
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
