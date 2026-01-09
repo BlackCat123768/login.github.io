@@ -2,10 +2,71 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr_Beyonce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* 纯黑色背景 */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: "Microsoft YaHei", sans-serif;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 0.5rem;
+        }
+        .log-container {
+            line-height: 1.8;
+        }
+        .log-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-left: 3px solid #4CAF50;
+            background-color: #1a1a1a;
+            border-radius: 0 5px 5px 0;
+        }
+        .log-time {
+            color: #ff9800;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .log-content {
+            color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
-    <h1>登录成功！欢迎来到首页</h1>
-    <a href="index.html">退出登录</a>
+    <h1>Profile</h1>
+    <div class="log-container">
+        <!-- 日志条目示例，直接在这里添加新的 log-item 即可 -->
+        <div class="log-item">
+            <div class="log-time">2026-01-09 15:30</div>
+            <div class="log-content">完成了黑色背景的日志页面编写，结构清晰易扩展。</div>
+        </div>
+
+        <div class="log-item">
+            <div class="log-time">2026-01-10 10:00</div>
+            <div class="log-content">添加新的日志内容，直接复制 log-item 模块修改时间和内容就行~</div>
+        </div>
+
+        <!-- 在这里添加新日志 -->
+        <!--
+        <div class="log-item">
+            <div class="log-time">你的日期 时间</div>
+            <div class="log-content">你的日志内容</div>
+        </div>
+        -->
+    </div>
 </body>
 </html>
